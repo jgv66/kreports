@@ -1,5 +1,7 @@
 {
   "name": "KReportS",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
