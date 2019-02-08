@@ -46,22 +46,22 @@ export class Ventas002Page implements OnInit {
       //
       rs.forEach( element => {
         //
-        eje[1][0] = element.peri0 ; eje[1][1] += element.ventas0;
-        eje[2][0] = element.peri1 ; eje[2][1] += element.ventas1;
-        eje[3][0] = element.peri2 ; eje[3][1] += element.ventas2;
-        eje[4][0] = element.peri3 ; eje[4][1] += element.ventas3;
+        eje[1][0] = element.peri0 ; eje[1][1] += element.visitas0;
+        eje[2][0] = element.peri1 ; eje[2][1] += element.visitas1;
+        eje[3][0] = element.peri2 ; eje[3][1] += element.visitas2;
+        eje[4][0] = element.peri3 ; eje[4][1] += element.visitas3;
         //
         eje_table.push( [ element.vendedor,
                           { v: element.promedio,  f: element.promedio.toFixed(0).toString() },
-                          { v: element.ventas0,   f: element.ventas0.toFixed(0).toString()  },
-                          { v: element.ventas1,   f: element.ventas1.toFixed(0).toString()  },
-                          { v: element.ventas2,   f: element.ventas2.toFixed(0).toString()  },
-                          { v: element.ventas3,   f: element.ventas3.toFixed(0).toString()  },
+                          { v: element.visitas0,   f: element.visitas0.toFixed(0).toString()  },
+                          { v: element.visitas1,   f: element.visitas1.toFixed(0).toString()  },
+                          { v: element.visitas2,   f: element.visitas2.toFixed(0).toString()  },
+                          { v: element.visitas3,   f: element.visitas3.toFixed(0).toString()  },
                           element.nombreven.substring(0, 12 ) ] );
-        total[0] += element.ventas0;
-        total[1] += element.ventas1;
-        total[2] += element.ventas2;
-        total[3] += element.ventas3;
+        total[0] += element.visitas0;
+        total[1] += element.visitas1;
+        total[2] += element.visitas2;
+        total[3] += element.visitas3;
       });
       //
       total[4] = ( total[0] + total[1] + total[2] + total[3] ) / 4;
