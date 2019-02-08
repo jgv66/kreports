@@ -41,19 +41,15 @@ export class HomePage {
     if ( this.email === '' || this.pssw === '' ) {
       this.funciones.msgAlert('Datos vacíos', 'Debe ingresar correo y clave para verificar accesos.' );
     } else {
-      this.datos.getVerificar( {  caso:     'usuario',
-                                  email:    this.email.trim(),
-                                  pssw:     this.pssw.trim(),
+      this.datos.getVerificar( {  reporte:  'usuario',
+                                  email:    this.email,
+                                  pssw:     this.pssw,
                                   empresa:  '01' } )
         .subscribe( data => {
-                    console.log(111111, data);
-                    const rs = data['recordsets'][0];
-                    console.log(2222222, rs);
-                    if ( rs[0].usuario ) {
+                    const rs = data['datos'][0];
+                    if ( rs.usuario ) {
                       //
-                      this.datos.saveDatoLocal( 'KRpt_Susa_usuario', rs[0] );
-                      // perfecto !!!. entrega un array con el dato filtrado (santa)
-                      // console.log( (this.empresas).filter( (e) => e.codigo === this.empresa ) );
+                      this.datos.saveDatoLocal( 'KRpt_Susa_usuario', rs );
                       this.empresas.forEach( element => {
                         if ( element.codigo === this.empresa ) {
                           this.datos.saveDatoLocal( 'KRpt_Susa_empresa', element.razonsocial );
@@ -64,7 +60,7 @@ export class HomePage {
                     }
       },
       err => {
-        console.error('ERROR. verifique credenciales', err);
+        console.error('ERROR. verifique sus datos de usuario/rut', err);
       });
     }
   }

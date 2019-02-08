@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatosService } from 'src/app/services/datos.service';
 import { FuncionesService } from 'src/app/services/funciones.service';
-import { Chart } from 'chart.js';
 
 declare var google;
 
@@ -12,15 +11,7 @@ declare var google;
 })
 export class Ventas001Page implements OnInit {
 
-  @ViewChild('barCanvas')   barCanvas;
-  @ViewChild('lineCanvas')  lineCanvas;
-
-  pieChart: any;
-  lineChart: any;
-  tabla: any;
   usuario = '';
-  public vendedores  = [];
-  public ventas      = [];
 
   constructor(  private datos: DatosService,
                 private funciones: FuncionesService ) {
@@ -29,34 +20,13 @@ export class Ventas001Page implements OnInit {
    }
 
   ngOnInit() {
-    console.log('ngOnInit Ventas01Page', this.usuario );
-    this.datos.getReport( { reporte: 4,  /* ksp_rpt_vtas_ven_tot */
+    console.log('ngOnInit Ventas001', this.usuario );
+    this.datos.getReport( { reporte: 1,  /* ksp_rpt_vtas_ven_tot */
                             empresa: '01',
                             sucursal: '001' } )
         .subscribe( data => { this.cargaDatos( data ); },
                     err  => { this.funciones.descargaEspera(); this.funciones.msgAlert( 'ATENCION', err ); } 
                   );
-  }
-
-  limpiarDatos() {
-    if ( this.pieChart && this.lineChart) {
-      this.removeData( this.pieChart );
-      this.removeData( this.lineChart );
-    }
-  }
-
-  removeData( chart ) {
-    chart.data.labels.pop();
-    chart.data.datasets.pop();
-    chart.update();
-  }
-
-  tortaChart( data ) {
-    this.pieChart = new Chart( this.barCanvas.nativeElement, {
-      type: 'pie',
-      data: { data },
-      options: { scales: { yAxes: [{ ticks: { beginAtZero: true } }] } }
-    });
   }
 
   cargaDatos( data ) {
@@ -109,68 +79,3 @@ export class Ventas001Page implements OnInit {
   }
 
 }
-
-/*
-
-        eje_table.push( [ element.sucursal, { v: element.ventas,
-                                              f: this.funciones.formatoNumero((element.ventas / 1000000), 2, 'es', '$ ') },
-                                              element.nombresuc ] );
-      eje_table.push( [ '>>>', {v: total, f: this.funciones.formatoNumero( (total/1000000), 2, 'es', '$ ') }, 'Totales' ] );
-
-  dibujarLineas( ventas ) {
-    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
-    type: 'line',
-    data: {
-      labels: [ '00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
-                '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-      datasets: [{
-          data: ventas,
-          label: 'Ventas x Hora',
-          borderColor: '#3e95cd',
-          fill: true
-          },
-          ]
-      },
-      options: {
-      title: {
-        display: false,
-        text: 'Ventas por hora'
-      }
-    }
-    });
-  }
-
-tortaChart( data ) {
-    this.pieChart = new Chart( this.barCanvas.nativeElement, {
-      type: 'pie',
-      data: {
-          labels: [],
-          datasets: [ {
-              label: 'Ventas',
-              data: [],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.9)',
-                  'rgba(255, 159, 64, 0.9)'
-              ],
-              borderColor: [
-                  'rgba(255,99,132,0)',
-                  'rgba(54, 162, 235, 0)'
-              ],
-              borderWidth: 1
-          } ]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      }
-    });
-  }
-
-
-
-*/

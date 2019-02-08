@@ -9,8 +9,8 @@ export class MenuPage implements OnInit {
 
   public itemes_Sucursales: Array<{ titulo: string, page: string, item: string }> = [
     /*{ titulo: 'Ventas por Sucursal', page: 'ventas001', item: 'Mes actual' },*/
-    { titulo: 'Ventas mes actual', page: 'ventas001', item: 'Facturacion Vendedores' },
-    { titulo: 'Ventas mes actual', page: 'ventas002', item: 'Venta pagada en el mes' }
+    { titulo: 'Ventas mes actual',   page: 'ventas001', item: 'Facturacion Vendedores' },
+    { titulo: 'Visitas mes actual ', page: 'ventas002', item: 'Visitas del mes' }
     /*{ titulo: 'Ventas mes actual', page: 'ventas001', item: 'Total, Mes actual' },*/
   ];
 
