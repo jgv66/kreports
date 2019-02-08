@@ -21,7 +21,7 @@ export class Ventas001Page implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit Ventas001', this.usuario );
-    this.datos.getReport( { reporte: 1,  /* ksp_rpt_vtas_ven_tot */
+    this.datos.getReport( { reporte: 1,
                             empresa: '01',
                             sucursal: '001' } )
         .subscribe( data => { this.cargaDatos( data ); },

@@ -46,10 +46,10 @@ export class Ventas002Page implements OnInit {
       //
       rs.forEach( element => {
         //
-        eje[1][0] = element.peri0 ; eje[1][1] += element.visitas0;
-        eje[2][0] = element.peri1 ; eje[2][1] += element.visitas1;
-        eje[3][0] = element.peri2 ; eje[3][1] += element.visitas2;
-        eje[4][0] = element.peri3 ; eje[4][1] += element.visitas3;
+        eje[1][0] = element.peri0.substring( 0, 5 ) ; eje[1][1] += element.visitas0;
+        eje[2][0] = element.peri1.substring( 0, 5 ) ; eje[2][1] += element.visitas1;
+        eje[3][0] = element.peri2.substring( 0, 5 ) ; eje[3][1] += element.visitas2;
+        eje[4][0] = element.peri3.substring( 0, 5 ) ; eje[4][1] += element.visitas3;
         //
         eje_table.push( [ element.vendedor,
                           { v: element.promedio,  f: element.promedio.toFixed(0).toString() },
@@ -88,10 +88,10 @@ export class Ventas002Page implements OnInit {
       const data_table = new google.visualization.DataTable();
       data_table.addColumn('string', 'Vend');
       data_table.addColumn('number', 'Prom');
-      data_table.addColumn('number', eje[1][0].substring(0, 5) ) ;
-      data_table.addColumn('number', eje[2][0].substring(0, 5) );
-      data_table.addColumn('number', eje[3][0].substring(0, 5) );
-      data_table.addColumn('number', eje[4][0].substring(0, 5) );
+      data_table.addColumn('number', eje[1][0] ) ;
+      data_table.addColumn('number', eje[2][0] );
+      data_table.addColumn('number', eje[3][0] );
+      data_table.addColumn('number', eje[4][0] );
       data_table.addColumn('string', 'Nombre Vendedor');
       data_table.addRows( eje_table );
       const table = new google.visualization.Table(document.getElementById('table_div'));
