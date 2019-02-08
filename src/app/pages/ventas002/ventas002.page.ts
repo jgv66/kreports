@@ -76,7 +76,7 @@ export class Ventas002Page implements OnInit {
       // grafica de barras
       const datos = google.visualization.arrayToDataTable( eje );
       const opciones = {
-        title:      'Visitas de las últimas 4 semanas',
+        title:      'Visitas últimas 4 semanas',
         chartArea:  { width: '50%'},
         hAxis:      { title: 'Total de Visitas', minValue: 0 },
         vAxis:      { title: 'Semanas' }
