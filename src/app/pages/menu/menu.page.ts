@@ -17,10 +17,10 @@ export class MenuPage implements OnInit {
   ];
 
 public itemes_SucPasado: Array<{ titulo: string, page: string, item: string }> = [
-    { titulo: 'Ventas por Sucursal Histórico', page: 'ventap001', item: 'Reporte 1' },
-    { titulo: 'Ventas por Sucursal Histórico', page: 'ventap001', item: 'Reporte 2' },
-    { titulo: 'Ventas por Sucursal Histórico', page: 'ventap001', item: 'Reporte 3' },
-    { titulo: 'Ventas por Sucursal Histórico', page: 'ventap001', item: 'Reporte 4' },
+    { titulo: 'Reportes y  KPI', page: 'ventap001', item: 'Reporte 1' },
+    { titulo: 'Reportes y  KPI', page: 'ventap001', item: 'Reporte 2' },
+    { titulo: 'Reportes y  KPI', page: 'ventap001', item: 'Reporte 3' },
+    { titulo: 'Reportes y  KPI', page: 'ventap001', item: 'Reporte 4' },
   ];
 
   constructor() { }
