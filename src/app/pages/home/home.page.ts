@@ -46,8 +46,9 @@ export class HomePage {
                                   pssw:     this.pssw,
                                   empresa:  '01' } )
         .subscribe( data => {
+                    console.log(data);
                     const rs = data['datos'][0];
-                    if ( rs.usuario ) {
+                    if ( rs ) {
                       //
                       this.datos.saveDatoLocal( 'KRpt_Susa_usuario', rs );
                       this.empresas.forEach( element => {
@@ -57,6 +58,8 @@ export class HomePage {
                       });
                       //
                       this.router.navigate( ['/menu'] );
+                    } else {
+                      this.funciones.msgAlert( 'Usuario no encontrado', 'Correija y reintente' );
                     }
       },
       err => {

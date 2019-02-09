@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DatosService } from './services/datos.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentsModule } from './components/components.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +23,8 @@ import { ComponentsModule } from './components/components.module';
             AppRoutingModule,
             HttpClientModule,
             IonicStorageModule.forRoot(),
-            ComponentsModule
+            ComponentsModule,
+            ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
           ],
   providers: [
     StatusBar,

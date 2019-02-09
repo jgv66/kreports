@@ -32,31 +32,42 @@ export class Ventas003Page implements OnInit {
   cargaDatos( data ) {
     const total = [0, 0, 0, 0, 0];
     const rs = data.datos;
+    //
+    let tit0 = '';
+    let tit1 = '';
+    let tit2 = '';
+    let tit3 = '';
+    //
     console.log( 'rs->', rs );
     if ( rs === undefined || rs.length === 0 ) {
       this.funciones.muestraySale('ATENCION : Vendedores  no presentan datos para representar', 2 );
     } else {
       // datos para xAxis
-      const eje       = [ [ 'Semanas', 'Ventas'],
-                          [ '', 0.0 ],
-                          [ '', 0.0 ],
-                          [ '', 0.0 ],
-                          [ '', 0.0 ]];
+      const eje = [ [ 'Semanas', 'Ventas'],
+                    [ '', 0.0 ],
+                    [ '', 0.0 ],
+                    [ '', 0.0 ],
+                    [ '', 0.0 ]];
       const eje_table = [];
       //
       rs.forEach( element => {
-        //
-        eje[1][0] = element.peri0.substring(0, 5) ; eje[1][1] += element.ventas0 ;
-        eje[2][0] = element.peri1.substring(0, 5) ; eje[2][1] += element.ventas1 ;
-        eje[3][0] = element.peri2.substring(0, 5) ; eje[3][1] += element.ventas2 ;
-        eje[4][0] = element.peri3.substring(0, 5) ; eje[4][1] += element.ventas3 ;
-        //
+        // Y-titulos de grafico
+        tit0 = element.peri0.substring(0, 5) ;
+        tit1 = element.peri1.substring(0, 5) ;
+        tit2 = element.peri2.substring(0, 5) ;
+        tit3 = element.peri3.substring(0, 5) ;
+        // matriz para barras
+        eje[1][0] = element.peri0 ; eje[1][1] += element.ventas0 / 1000000 ;
+        eje[2][0] = element.peri1 ; eje[2][1] += element.ventas1 / 1000000 ;
+        eje[3][0] = element.peri2 ; eje[3][1] += element.ventas2 / 1000000 ;
+        eje[4][0] = element.peri3 ; eje[4][1] += element.ventas3 / 1000000 ;
+        // matriz para listado
         eje_table.push( [ element.vendedor,
-                          { v: (element.promedio / 1000000), f: (element.promedio / 1000000).toFixed(1).toString() },
-                          { v: (element.ventas0 / 1000000 ), f: (element.ventas0 / 1000000 ).toFixed(1).toString()  },
-                          { v: (element.ventas1 / 1000000 ), f: (element.ventas1 / 1000000 ).toFixed(1).toString()  },
-                          { v: (element.ventas2 / 1000000 ), f: (element.ventas2 / 1000000 ).toFixed(1).toString()  },
-                          { v: (element.ventas3 / 1000000 ), f: (element.ventas3 / 1000000 ).toFixed(1).toString()  },
+                          { v: element.promedio, f: (element.promedio / 1000000).toFixed(1).toString() },
+                          { v: element.ventas0 , f: (element.ventas0 / 1000000 ).toFixed(1).toString() },
+                          { v: element.ventas1 , f: (element.ventas1 / 1000000 ).toFixed(1).toString() },
+                          { v: element.ventas2 , f: (element.ventas2 / 1000000 ).toFixed(1).toString() },
+                          { v: element.ventas3 , f: (element.ventas3 / 1000000 ).toFixed(1).toString() },
                           element.nombreven.substring(0, 12 ) ] );
         total[0] += element.ventas0 ;
         total[1] += element.ventas1 ;
@@ -64,7 +75,7 @@ export class Ventas003Page implements OnInit {
         total[3] += element.ventas3 ;
       });
       //
-      total[4] = (( total[0] + total[1] + total[2] + total[3] ) / 4 ) / 1000000 ;
+      total[4] = ( total[0] + total[1] + total[2] + total[3] ) / 4 ;
       eje_table.push( [ '>>>',
                         {v: total[4], f: (total[4] / 1000000).toFixed(1).toString() },
                         {v: total[0], f: (total[0] / 1000000).toFixed(1).toString() },
@@ -77,7 +88,7 @@ export class Ventas003Page implements OnInit {
       const datos = google.visualization.arrayToDataTable( eje );
       const opciones = {
         title:      'Ventas últimas 4 semanas',
-        chartArea:  { width: '70%'},
+        chartArea:  { width: '50%'},
         hAxis:      { title: 'Total de Ventas', minValue: 0 },
         vAxis:      { title: 'Semanas' }
       };
@@ -88,10 +99,10 @@ export class Ventas003Page implements OnInit {
       const data_table = new google.visualization.DataTable();
       data_table.addColumn('string', 'Vend');
       data_table.addColumn('number', 'Prom');
-      data_table.addColumn('number', eje[1][0] ) ;
-      data_table.addColumn('number', eje[2][0] );
-      data_table.addColumn('number', eje[3][0] );
-      data_table.addColumn('number', eje[4][0] );
+      data_table.addColumn('number', tit0 ) ;
+      data_table.addColumn('number', tit1 );
+      data_table.addColumn('number', tit2 );
+      data_table.addColumn('number', tit3 );
       data_table.addColumn('string', 'Nombre Vendedor');
       data_table.addRows( eje_table );
       const table = new google.visualization.Table(document.getElementById('table_div'));
