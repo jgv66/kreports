@@ -24,7 +24,7 @@ export class CollapsibleComponent implements OnInit {
   }
 
   navigateTo( page: any ) {
-    if ( page === 'ventas001' || page === 'ventas002'  || page === 'ventas003' || page === 'ventas004'  ) {
+    if ( page === 'ventas001' || page === 'ventas002'  || page === 'ventas003' || page === 'ventas004' || page === 'ventas005' ) {
       this.router.navigate( [`${page}`] );
     } else {
       this.funciones.muestraySale( 'Reporte no adquirido. Contacte a www.kinetik.cl', 2 );

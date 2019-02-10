@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'ventas001', loadChildren: './pages/ventas001/ventas001.module#Ventas001PageModule' },
   { path: 'ventas002', loadChildren: './pages/ventas002/ventas002.module#Ventas002PageModule' },
   { path: 'ventas003', loadChildren: './pages/ventas003/ventas003.module#Ventas003PageModule' },
-  { path: 'ventas004', loadChildren: './pages/ventas004/ventas004.module#Ventas004PageModule' },
+  { path: 'ventas004', loadChildren: './pages/ventas004/ventas004.module#Ventas004PageModule' },  { path: 'ventas005', loadChildren: './pages/ventas005/ventas005.module#Ventas005PageModule' },
+
 
 ];
 

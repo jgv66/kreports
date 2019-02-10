@@ -31,6 +31,7 @@ export class Ventas004Page implements OnInit {
 
   cargaDatos( data ) {
     const total = [0, 0, 0, 0, 0];
+    let t1 = 0; let t2 = 0; let t3 = 0; let t4 = 0;
     const rs = data.datos;
     //
     let tit0 = '';
@@ -57,10 +58,10 @@ export class Ventas004Page implements OnInit {
         tit2 = element.peri2.substring(0, 5) ;
         tit3 = element.peri3.substring(0, 5) ;
         //
-        eje[1][0] = element.peri0 ; eje[1][1] += element.kilos0 / 1000 ;
-        eje[2][0] = element.peri1 ; eje[2][1] += element.kilos1 / 1000 ;
-        eje[3][0] = element.peri2 ; eje[3][1] += element.kilos2 / 1000 ;
-        eje[4][0] = element.peri3 ; eje[4][1] += element.kilos3 / 1000 ;
+        eje[1][0] = element.peri0 ; t1 += element.kilos0 / 1000 ; eje[1][1] = t1;
+        eje[2][0] = element.peri1 ; t2 += element.kilos1 / 1000 ; eje[2][1] = t2;
+        eje[3][0] = element.peri2 ; t3 += element.kilos2 / 1000 ; eje[3][1] = t3;
+        eje[4][0] = element.peri3 ; t4 += element.kilos3 / 1000 ; eje[4][1] = t4;
         //
         eje_table.push( [ element.vendedor,
                           { v: (element.promedio / 1000), f: (element.promedio / 1000).toFixed(1).toString() },

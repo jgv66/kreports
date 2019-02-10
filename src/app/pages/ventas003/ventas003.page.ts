@@ -31,6 +31,7 @@ export class Ventas003Page implements OnInit {
 
   cargaDatos( data ) {
     const total = [0, 0, 0, 0, 0];
+    let t1 = 0; let t2 = 0; let t3 = 0; let t4 = 0;
     const rs = data.datos;
     //
     let tit0 = '';
@@ -57,10 +58,10 @@ export class Ventas003Page implements OnInit {
         tit2 = element.peri2.substring(0, 5) ;
         tit3 = element.peri3.substring(0, 5) ;
         // matriz para barras
-        eje[1][0] = element.peri0 ; eje[1][1] += element.ventas0 / 1000000 ;
-        eje[2][0] = element.peri1 ; eje[2][1] += element.ventas1 / 1000000 ;
-        eje[3][0] = element.peri2 ; eje[3][1] += element.ventas2 / 1000000 ;
-        eje[4][0] = element.peri3 ; eje[4][1] += element.ventas3 / 1000000 ;
+        eje[1][0] = element.peri0 ; t1 += element.ventas0 / 1000000 ; eje[1][1] = t1;
+        eje[2][0] = element.peri1 ; t2 += element.ventas1 / 1000000 ; eje[2][1] = t2;
+        eje[3][0] = element.peri2 ; t3 += element.ventas2 / 1000000 ; eje[3][1] = t3;
+        eje[4][0] = element.peri3 ; t4 += element.ventas3 / 1000000 ; eje[4][1] = t4;
         // matriz para listado
         eje_table.push( [ element.vendedor,
                           { v: element.promedio, f: (element.promedio / 1000000).toFixed(1).toString() },

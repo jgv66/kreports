@@ -62,6 +62,7 @@ export class Ventas001Page implements OnInit {
       const options   = { title: 'Mes actual : ' + this.funciones.nombreMes( rs[0].mes ),
                         'width': '100%',
                         'height': '100%',
+                        'is3D': true,
                         'chartArea': { 'left': '10', 'top': '20', 'bottom': '50', 'width': '150%', 'height': '100%'},
                         };
       pie_chart.draw(data_pie, options );
